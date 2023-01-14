@@ -73,7 +73,7 @@ screen.connect_signal("request::wallpaper", function(s)
                     horizontal_fit_policy = "fit",
                     vertical_fit_policy   = "fit",
                 },
-                margins = {top = dpi(44)},
+                margins = {top = dpi(32)},
                 widget = wibox.container.margin
         }
     }

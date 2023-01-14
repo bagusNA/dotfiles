@@ -138,11 +138,18 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey }, "v", function () require("mods.exit-screen") awesome.emit_signal('module::exit_screen:show') end,
               {description = "show exit screen", group = "modules"}),
 
+    awful.key({ modkey, shift }, "p", function ()
+        awful.spawn.easy_async_with_shell("picom --config $HOME/.config/awesome/misc/picom/panthom.conf")
+    end, {description = "Start picom", group = "awesome"}),
+
+    awful.key({ modkey, shift, ctrl }, "p", function ()
+        awful.spawn.easy_async_with_shell("killall picom")
+    end, {description = "Kill picom", group = "awesome"})
 })
 
 -- Tags related keybindings
 awful.keyboard.append_global_keybindings({
-    awful.key({ modkey }, "Escape", awful.tag.history.restore,
+    awful.key({ modkey }, "`", awful.tag.history.restore,
               {description = "go back", group = "tags"}),
 })
 
@@ -342,7 +349,7 @@ end)
 -- client mgmt
 client.connect_signal("request::default_keybindings", function()
     awful.keyboard.append_client_keybindings({
-        awful.key({ modkey,           }, "c",
+        awful.key({ modkey }, "f",
             function (c)
                 c.fullscreen = not c.fullscreen
                 c:raise()
@@ -350,10 +357,10 @@ client.connect_signal("request::default_keybindings", function()
         {description = "toggle fullscreen", group = "client"}),
 
 
-        awful.key({ modkey }, "q",      function (c) c:kill() end,
+        awful.key({ modkey, shift }, "w",      function (c) c:kill() end,
                 {description = "close", group = "client"}),
 
-        awful.key({ modkey }, "x",  awful.client.floating.toggle,
+        awful.key({ modkey, shift }, "f",  awful.client.floating.toggle,
                 {description = "toggle floating", group = "client"}),
 
 
@@ -365,7 +372,7 @@ client.connect_signal("request::default_keybindings", function()
                 {description = "move to screen", group = "client"}),
 
 
-        awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
+        awful.key({ modkey, shift }, "t",      function (c) c.ontop = not c.ontop            end,
                 {description = "toggle keep on top", group = "client"}),
 
 
@@ -376,7 +383,7 @@ client.connect_signal("request::default_keybindings", function()
         {description = "minimize", group = "client"}),
 
 
-        awful.key({ modkey,           }, "z",
+        awful.key({ modkey }, "t",
             function (c)
                 c.maximized = not c.maximized
                 c:raise()

@@ -53,7 +53,7 @@
 
 * **Fonts?**
     * as for fonts, the setup uses 4 fonts in total
-        - *Roboto* - main ui font
+        - *Google Sans* - main ui font
         - *Material Icons* - for icons
         - *Iosevka* - Terminal/Monospace font
         - *JetbrainsMono NF* - idk
@@ -256,9 +256,9 @@
 1. Install packages / dependencies
     
     ```    
-    yay -S picom-ibhagwan-git awesome-git acpid git mpd ncmpcpp wmctrl \
-    firefox lxappearance gucharmap thunar alacritty neovim polkit-gnome \
-    xdotool xclip scrot brightnessctl alsa-utils pulseaudio jq acpi rofi \
+    yay -S --needed picom-ibhagwan-git awesome-git ttf-google-sans acpid git mpd ncmpcpp wmctrl \
+    lxappearance gucharmap alacritty neovim polkit-gnome \
+    xdotool xclip scrot brightnessctl alsa-utils pipewire jq acpi rofi \
     inotify-tools zsh materia-gtk-theme mpdris2 bluez bluez-utils bluez-plugins \
     playerctl redshift
     ```

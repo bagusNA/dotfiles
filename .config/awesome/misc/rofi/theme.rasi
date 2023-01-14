@@ -4,7 +4,7 @@
  */
 
 configuration {
-	font:							"Roboto Bold 11";
+	font:							"Google Sans Bold 11";
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";

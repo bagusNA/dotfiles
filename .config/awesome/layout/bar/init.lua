@@ -80,9 +80,14 @@ awful.screen.connect_for_each_screen(function(s)
         direction = "east",
         widget = wibox.container.rotate()
     }
+    
+    local battery_text = wibox.widget {
+        widget = wibox.widget.textbox,
+    }
 
     local battery = wibox.widget{
         {
+            battery_text,
             bat_icon,
             {
                 battery_progress,
@@ -94,14 +99,14 @@ awful.screen.connect_for_each_screen(function(s)
             spacing = dpi(1)
         },
         widget = wibox.container.margin,
-        margins = {top = dpi(13),bottom = dpi(13)}
+        margins = {top = dpi(11),bottom = dpi(11)}
     }
 
 
     -- clock
     local clock = wibox.widget{
         widget = wibox.widget.textclock,
-        format = "%I:%M   %a %d",
+        format = "%k:%M   %a %d",
         font = beautiful.font_var .. "Bold 13",
         valign = "center",
         align = "center"
@@ -124,6 +129,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- ~~~~~~~~~~~~~~~~~~~~~~~~~~
     awesome.connect_signal("signal::battery", function(value) 
         battery_progress.value = value
+        battery_text.markup = value .. "%"
     end)
 
     awesome.connect_signal("signal::charger", function(state)
@@ -150,7 +156,7 @@ awful.screen.connect_for_each_screen(function(s)
         visible     = true,
         ontop       = false,
         type        = "dock",
-        height      = dpi(44),
+        height      = dpi(36),
         bg          = "#00000000",
         width       = screen_width
     })
@@ -180,7 +186,7 @@ awful.screen.connect_for_each_screen(function(s)
             {
                 battery,
                 wifi,
-                layoutbox,
+                -- layoutbox,
                 layout = wibox.layout.fixed.horizontal,
                 spacing = dpi(16)
             },

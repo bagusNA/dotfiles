@@ -7,11 +7,11 @@
 
 return {
 
-font                = "Roboto",
+font                = "Google Sans",
 titlebar_position   = "bottom",
 gaps                = 8,
 border_width        = 0.1,
-round_corners       = 18,
+round_corners       = 16,
 bar_size            = 54,
 color_scheme        = "blue"
 

@@ -54,7 +54,7 @@ end)
 -- toggler
 
 local dash_show = function()
-    slide:set(dpi(44) + beautiful.useless_gap * 2)
+    slide:set(dpi(30) + beautiful.useless_gap * 2)
     dash.visible = true
     dash_status = false
 end
