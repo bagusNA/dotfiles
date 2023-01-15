@@ -208,7 +208,7 @@ awesome.connect_signal("signal::volume", function(value, muted)
 		icon.markup = "<span foreground='" .. beautiful.accent_3 .. "'></span>"
 		animation:set(value)
 
-		if muted   then
+		if muted then
 			button.markup = "<span foreground='" .. beautiful.bg_color .. "'></span>"
 			animation_button:set(dpi(40))
 		else

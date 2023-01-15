@@ -269,7 +269,7 @@
     ```    
     yay -S --needed picom-ibhagwan-git awesome-git ttf-google-sans acpid git mpd ncmpcpp wmctrl \
     lxappearance gucharmap alacritty neovim polkit-gnome \
-    xdotool xclip scrot brightnessctl alsa-utils pipewire jq acpi rofi \
+    xdotool xclip scrot brightnessctl alsa-utils pipewire pipewire-pulse pamixer jq acpi rofi \
     inotify-tools zsh materia-gtk-theme mpdris2 bluez bluez-utils bluez-plugins \
     playerctl redshift
     ```
