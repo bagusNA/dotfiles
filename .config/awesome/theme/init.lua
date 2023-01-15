@@ -25,7 +25,7 @@ local colors = require("theme.colors." .. (ui_vars.color_scheme or "dark") )
 local theme = {}
 
 -- base background colors
-theme.bg_color         = "#101012"
+theme.bg_color         = colors.background or "#101012"
 theme.bg_2             = "#1B1B1B"
 theme.bg_3             = "#303030"
 
@@ -144,6 +144,10 @@ theme.notification_border_width     = dpi(0)
 theme.titlebar_bg_normal    = theme.bg_color
 theme.titlebar_bg_focus     = theme.bg_color
 theme.titlebars_enabled     = true
+
+-- Layout List
+theme.layoutlist_bg_selected    = theme.accent_3
+theme.layoutlist_shape_selected = helpers.rrect(theme.rounded)
 
 -- Layout icons
 -- ~~~~~~~~~~~~

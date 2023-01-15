@@ -64,17 +64,21 @@ screen.connect_signal("request::wallpaper", function(s)
     awful.wallpaper {
         screen = s,
         widget = {
+            {
                 {
                     image = beautiful.wallpaper,
                     widget = wibox.widget.imagebox,
                     upscale               = true,
                     downscale             = true,
-                    clip_shape                 = helpers.prrect(beautiful.rounded, true, true, false, false),
+                    clip_shape            = helpers.prrect(beautiful.rounded, true, true, false, false),
                     horizontal_fit_policy = "fit",
                     vertical_fit_policy   = "fit",
                 },
                 margins = {top = dpi(32)},
                 widget = wibox.container.margin
+            },
+            widget = wibox.container.background,
+            bg = beautiful.bg_color,
         }
     }
 end)
@@ -137,7 +141,7 @@ local ll = awful.widget.layoutlist {
         id              = "background_role",
         forced_width    = dpi(68),
         forced_height   = dpi(68),
-        shape           = helpers.rrect(8),
+        shape           = helpers.rrect(beautiful.rounded),
         widget          = wibox.container.background
     }
 }
@@ -152,7 +156,7 @@ local layout_popup = awful.popup {
     placement   = awful.placement.centered,
     ontop       = true,
     visible     = false,
-    shape           = helpers.rrect(beautiful.rounded),
+    shape       = helpers.rrect(beautiful.rounded),
     bg          = "#00000000"
 }
 

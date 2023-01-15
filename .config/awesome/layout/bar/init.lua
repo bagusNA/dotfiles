@@ -99,7 +99,7 @@ awful.screen.connect_for_each_screen(function(s)
             spacing = dpi(1)
         },
         widget = wibox.container.margin,
-        margins = {top = dpi(11),bottom = dpi(11)}
+        margins = {top = dpi(9),bottom = dpi(9)}
     }
 
 
@@ -129,7 +129,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- ~~~~~~~~~~~~~~~~~~~~~~~~~~
     awesome.connect_signal("signal::battery", function(value) 
         battery_progress.value = value
-        battery_text.markup = value .. "%"
+        battery_text.markup = value .. "% "
     end)
 
     awesome.connect_signal("signal::charger", function(state)
@@ -156,8 +156,8 @@ awful.screen.connect_for_each_screen(function(s)
         visible     = true,
         ontop       = false,
         type        = "dock",
-        height      = dpi(36),
-        bg          = "#00000000",
+        height      = dpi(32),
+        bg          = beautiful.bg_color,
         width       = screen_width
     })
 

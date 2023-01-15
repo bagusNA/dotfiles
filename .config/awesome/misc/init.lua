@@ -5,7 +5,6 @@
 -- requirements
 -- ~~~~~~~~~~~~
 require("misc.autostart")
-
 local awful = require "awful"
 local beautiful = require "beautiful"
 local gfs = require "gears".filesystem.get_configuration_dir()

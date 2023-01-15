@@ -93,6 +93,17 @@
      <br>
 
     <details open>
+    <summary><strong>Comfy Red</strong></summary>
+
+    <img src="assets/shots/red.png" width=500>
+
+     </details>
+
+     <br>
+
+    <details close>
+
+    <details open>
     <summary><strong>material blue</strong></summary>
 
     <img src="assets/shots/blue.png" width=500>
