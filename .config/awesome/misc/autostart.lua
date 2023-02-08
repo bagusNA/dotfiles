@@ -8,6 +8,7 @@ local applications = {
     "xset r rate 200 40",
     "picom --config $HOME/.config/awesome/misc/picom/panthom.conf &",
     "touchegg &",
+    "/usr/bin/polkit-dumb-agent &",
 }
 
 -- startup apps runner

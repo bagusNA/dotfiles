@@ -145,6 +145,9 @@ theme.titlebar_bg_normal    = theme.bg_color
 theme.titlebar_bg_focus     = theme.bg_color
 theme.titlebars_enabled     = true
 
+-- System Tray
+theme.systray_icon_spacing = dpi(6)
+
 -- Layout List
 theme.layoutlist_bg_selected    = theme.accent_3
 theme.layoutlist_shape_selected = helpers.rrect(theme.rounded)

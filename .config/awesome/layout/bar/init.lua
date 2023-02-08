@@ -45,7 +45,7 @@ awful.screen.connect_for_each_screen(function(s)
     --------------------
     -- battery widget
     local bat_icon = wibox.widget{
-        markup = "<span foreground='" .. beautiful.fg_color .. "'></span>",
+        markup = "<span foreground='" .. beautiful.green_color .. "'></span>",
         font = beautiful.icon_var .. "11",
         align = "center",
         valign = "center",
@@ -66,17 +66,19 @@ awful.screen.connect_for_each_screen(function(s)
         widget              = wibox.widget.progressbar,
     }
 
-    local battery_border_thing = wibox.widget{
-        {
-            wibox.widget.textbox,
-            widget = wibox.container.background,
-            bg = beautiful.fg_color .. "A6",
-            forced_width = dpi(7.2),
-            forced_height = dpi(7.2),
-            shape = function(cr, width, height)
-                gears.shape.pie(cr,width, height, 0, math.pi)
-            end
-        },
+    local battery_border = wibox.widget {
+        wibox.widget.textbox,
+        widget = wibox.container.background,
+        bg = beautiful.fg_color .. "A6",
+        forced_width = dpi(7.2),
+        forced_height = dpi(7.2),
+        shape = function(cr, width, height)
+            gears.shape.pie(cr,width, height, 0, math.pi)
+        end
+    }
+
+    local battery_border_container = wibox.widget{
+        battery_border,
         direction = "east",
         widget = wibox.container.rotate()
     }
@@ -91,7 +93,7 @@ awful.screen.connect_for_each_screen(function(s)
             bat_icon,
             {
                 battery_progress,
-                battery_border_thing,
+                battery_border_container,
                 layout = wibox.layout.fixed.horizontal,
                 spacing = dpi(-1.6)
             },
@@ -112,6 +114,16 @@ awful.screen.connect_for_each_screen(function(s)
         align = "center"
     }
 
+    -- System Tray
+    local systray = wibox.widget {
+        widget = wibox.widget.systray,
+        base_size = dpi(20),
+    }
+
+    -- Window Title
+    local window_title = wibox.widget {
+        widget = wibox.widget.textbox,
+    }
 
     -- Create a layoutbox
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -135,8 +147,12 @@ awful.screen.connect_for_each_screen(function(s)
     awesome.connect_signal("signal::charger", function(state)
         if state then
             bat_icon.visible = true
+            battery_progress.color = beautiful.green_color
+            battery_border.bg = beautiful.green_color
         else
             bat_icon.visible = false
+            battery_progress.color = beautiful.fg_color
+            battery_border.bg = beautiful.fg_color
         end
     end)
 
@@ -146,9 +162,29 @@ awful.screen.connect_for_each_screen(function(s)
         else
             wifi.markup = helpers.colorize_text("", beautiful.fg_color .. "99")
         end
-        
     end)
 
+    client.connect_signal("request::activate", function (client)
+        window_title.markup = client.name
+    end)
+
+    client.connect_signal("property::name", function (client)
+        window_title.markup = client.name
+    end)
+
+    tag.connect_signal("request::selected", function (tag)
+        local clients = tag:clients()
+
+        if not clients then
+            window_title.markup = clients
+        end
+    end)
+
+    client.connect_signal("request::unmanage", function (client)
+        if (client.name == window_title.markup) then
+            window_title.markup = ''
+        end
+    end)
 
     -- wibar
     s.wibar_wid = awful.wibar({
@@ -169,7 +205,12 @@ awful.screen.connect_for_each_screen(function(s)
     -- bar setup
     s.wibar_wid:setup {
         {
-            clock,
+            {
+                clock,
+                window_title,
+                layout = wibox.layout.fixed.horizontal,
+                spacing = dpi(12),
+            },
             {
                 {
                     nil,
@@ -184,6 +225,11 @@ awful.screen.connect_for_each_screen(function(s)
                 spacing = dpi(20)
             },
             {
+                {
+                    systray,
+                    widget = wibox.container.place,
+                    valign = "center",
+                },
                 battery,
                 wifi,
                 -- layoutbox,
